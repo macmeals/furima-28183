@@ -30,15 +30,26 @@
 | ship_cost_id        | integer       | null: false                     |
 | ship_loction_id     | integer       | null: false                     |
 | ship_day_id         | integer       | null: false                     |
-| comment             | text          |                                 |
 | user_id             | integer       | null: false, foreign_key: true  |
 | buyer_id            | integer       | null: false, foreign_key: true  |
 
 ### Association 
 
 - belongs_to :user
+- has_many :comments
 - has_one :buyer
+- has_one :sold-item
 
+## commentsテーブル
+
+| Column              | Type          | Options                         |
+| ------------------- | ------------- | ------------------------------  |
+| comments            | text          |                                 |
+| item_id             | integer       | null: false, foreign_key: true  |
+
+### Association 
+
+- belongs_to :item
 
 ## buyers（購入者） テーブル
 
@@ -54,4 +65,17 @@
 
 ### Association 
 
-- belong_to : item
+- belong_to :item
+- has_to :sold-items
+
+## sold_itemsテーブル
+
+| Column              | Type        | Options                         |
+| ------------------  | ----------- | ------------------------------- |
+| buyer_id            | integer     | null: false, foreign_key: true  |
+| item_id             | integer     | null: false, foreign_key: true  |
+
+### Association
+
+- belong_to :buyer
+- belong_to :item
