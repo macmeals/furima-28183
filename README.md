@@ -17,6 +17,7 @@
 ### Association 
 
 - has_many :items
+- has_one :sold-item
 
 ## itemsテーブル
 
@@ -31,13 +32,11 @@
 | ship_loction_id     | integer       | null: false                     |
 | ship_day_id         | integer       | null: false                     |
 | user_id             | integer       | null: false, foreign_key: true  |
-| buyer_id            | integer       | null: false, foreign_key: true  |
 
 ### Association 
 
 - belongs_to :user
 - has_many :comments
-- has_one :buyer
 - has_one :sold-item
 
 ## commentsテーブル
@@ -46,12 +45,13 @@
 | ------------------- | ------------- | ------------------------------  |
 | comments            | text          |                                 |
 | item_id             | integer       | null: false, foreign_key: true  |
+| user_id             | integer       | null: false, foreign_key: true  |
 
 ### Association 
 
 - belongs_to :item
 
-## buyers（購入者） テーブル
+## addressesテーブル
 
 | Column              | Type        | Options                         |
 | ------------------  | ----------- | ------------------------------- |
@@ -61,21 +61,21 @@
 | house_address       | string      | null: false                     |
 | building            | string      |                                 |
 | tell_number         | string      | null: false                     |
-| item_id             | integer     | null: false, foreign_key: true  |
+| sold_item_id        | integer     | null: false, foreign_key: true  |
 
 ### Association 
 
-- belong_to :item
-- has_to :sold-items
+- belong_to :sold-item
 
 ## sold_itemsテーブル
 
 | Column              | Type        | Options                         |
 | ------------------  | ----------- | ------------------------------- |
-| buyer_id            | integer     | null: false, foreign_key: true  |
+| user_id             | integer     | null: false, foreign_key: true  |
 | item_id             | integer     | null: false, foreign_key: true  |
 
 ### Association
 
-- belong_to :buyer
+- has_one :address
 - belong_to :item
+- belong_to :user
