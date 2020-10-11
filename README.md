@@ -16,7 +16,7 @@
 ### Association 
 
 - has_many :items
-- has_one :sold-item
+- has_one :sold_item
 
 ## itemsテーブル
 
@@ -36,7 +36,7 @@
 
 - belongs_to :user
 - has_many :comments
-- has_one :sold-item
+- has_one :sold_item
 
 ## commentsテーブル
 
@@ -64,7 +64,7 @@
 
 ### Association 
 
-- belong_to :sold-item
+- belong_to :sold_item
 
 ## sold_itemsテーブル
 
