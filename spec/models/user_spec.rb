@@ -59,13 +59,13 @@ RSpec.describe User, type: :model do
       end
 
       it "passwordは半角英語だけだと登録できない" do
-        @user.password = "aaaaa"
+        @user.password = "aaaaaa"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
 
       it "passwordは半角数字だけだと登録できない" do
-        @user.password = "11111"
+        @user.password = "111111"
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
