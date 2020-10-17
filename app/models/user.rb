@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  has_one :sold_item
-
+  has_many :sold_items
+  
   validates :nickname, :birth_day, presence: true 
   VALID_EMAIL_REGEX = /\A[a-zA-Z0-9.!#%&'*+\/=?_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*\z/
   validates :email, presence: true , uniqueness:{ case_sensitive: true } ,format: { with: VALID_EMAIL_REGEX }
