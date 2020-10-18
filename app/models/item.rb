@@ -7,6 +7,8 @@ class Item < ApplicationRecord
   has_one :sold_item
   has_one_attached :image
 
+  validates :name , presence: true
+  
   #categoryの選択が「--」の時は保存できないようにする
   validates :category_id, numericality: { other_than: 1 } 
 
