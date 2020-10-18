@@ -18,5 +18,5 @@ class Item < ApplicationRecord
 
   #ship_locationの選択が「--」の時は保存できないようにする
   validates :ship_location_id, numericality: { other_than: 1 } 
-
+  
 end
