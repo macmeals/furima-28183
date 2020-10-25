@@ -56,29 +56,58 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
+      it "category_idが１だと商品が出品できない" do
+        @item.category_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
+      end
+
       it "status_idが存在しないと商品が出品できない" do
-        @item.status_id =""
+        @item.status_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end
 
+      it "status_idが1だと商品が出品できない" do
+        @item.status_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status must be other than 1")
+      end
+
       it "ship_cost_idが存在しないと商品が出品できない" do
-        @item.ship_cost_id =""
+        @item.ship_cost_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Ship cost can't be blank")
+      end
+
+      it "ship_cost_idが１だと商品が出品できない" do
+        @item.ship_cost_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Ship cost must be other than 1")
       end
 
       it "ship_location_idが存在しないと商品が出品できない" do
         @item.ship_location_id =""
         @item.valid?
         expect(@item.errors.full_messages).to include("Ship location can't be blank")
+      end
 
+      it "ship_location_1だと商品が出品できない" do
+        @item.ship_location_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Ship location must be other than 1")
       end
 
       it "ship_day_idが存在しないと商品が出品できない" do
-        @item.ship_day_id =""
+        @item.ship_day_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Ship day can't be blank")
+      end
+
+      it "ship_day_idが1だと商品が出品できない" do
+        @item.ship_day_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Ship day must be other than 1")
       end
 
     end
