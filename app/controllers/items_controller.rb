@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   def index
     @item = Item.all
-    @solditem = SoldItem.all
     
   end
 
