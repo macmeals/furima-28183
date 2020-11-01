@@ -30,12 +30,24 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    if user_signed_in? && current_user.id == @item.user_id
+      render "edit"
+    elsif user_signed_in?
+      @items = Item.all.order("created_at DESC")
+      render "index"
+    else
+      redirect_to new_user_session_path      
+    end
+
   end
 
   def update
     item = Item.find(params[:id])
-    item.update(item_params)
-    redirect_to item_path
+    if item.update(item_params)
+       redirect_to item_path
+    else
+       render "edit"
+    end
   end
 
   private
