@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:post_code ,:prefecture_id ,:city ,:house_address ,:building ,:tell_number ,:sold_item_id)
-  
   end
 
 end
+
