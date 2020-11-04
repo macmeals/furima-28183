@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-  belong_to :sold_item
+  belongs_to :sold_item
 
   with_options presence: true do
     validates :post_code , format:{ with: /\A\d{3}[-]\d{4}\z/ }
