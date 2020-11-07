@@ -1,14 +1,18 @@
 class OrdersController < ApplicationController
   def index
     @order = Order.new
+    @item = Item.find(params[:item_id])
+    
+
   end
 
   def create
     @order = Order.new(order_params)
+    binding.pry
     if @order.valid?
       pay_item
       @order.save
-      return redirect_to orders_path
+      return redirect_to root_path
     else
       render 'index'
     end
@@ -21,7 +25,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_154d5a0e8f715869aab05cb4"  
+    Payjp.api_key = "sk_test_154d5a0e8f715869aab05cb4" 
     Payjp::Charge.create(
       amount: order_params[:price],  
       card: order_params[:token],    

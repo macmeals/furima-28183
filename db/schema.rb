@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_074408) do
     t.string "house_address", null: false
     t.string "building"
     t.string "tell_number", null: false
-    t.integer "sold_item_id", null: false
+    t.integer "sold_item_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

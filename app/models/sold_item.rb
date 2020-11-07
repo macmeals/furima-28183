@@ -1,5 +1,5 @@
 class SoldItem < ApplicationRecord
-  has_one :address
+  has_one :order
   belongs_to :item
   belongs_to :user
   
