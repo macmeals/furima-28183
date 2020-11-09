@@ -14,4 +14,4 @@ function buy_fee_profit () {
   });
 
  }
- window.addEventListener('turbolinks:load' , buy_fee_profit)
+ window.addEventListener('load' , buy_fee_profit)
