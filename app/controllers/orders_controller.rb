@@ -1,19 +1,28 @@
 class OrdersController < ApplicationController
+  before_action :set_item , only: [:index, :create ,:pay_item]
+
   def index
-    # @order = Order.new
-    @item = Item.find(params[:item_id])
-    @order_sold = OrderSold.new
-    
+    if @item.sold_item.present?
+       redirect_to root_path
+    elsif user_signed_in? && current_user.id == @item.user_id
+    # @item = Item.find(params[:item_id])
+       redirect_to root_path
+    elsif user_signed_in?
+       @order_sold = OrderSold.new
+       render 'index'
+    else
+       redirect_to new_user_session_path
+    end 
 
   end
 
   def create
-    @item = Item.find(params[:item_id])
-    @order_sold = OrderSold.new(order_params)
+    # @item = Item.find(params[:item_id])
+       @order_sold = OrderSold.new(order_params)
     if @order_sold.valid?
-         pay_item
-         @order_sold.save
-         return redirect_to root_path
+       pay_item
+       @order_sold.save
+       return redirect_to root_path
      else
          render 'index'
      end
@@ -27,13 +36,17 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    @item = Item.find(params[:item_id])
+    # @item = Item.find(params[:item_id])
     Payjp.api_key = "sk_test_154d5a0e8f715869aab05cb4" 
     Payjp::Charge.create(
       amount: @item.price ,
       card: params[:token],    
       currency: 'jpy'               
     )
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
 end
