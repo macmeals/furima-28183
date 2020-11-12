@@ -3,10 +3,6 @@ class OrderSold
   attr_accessor :number,:exp_month,:exp_year ,:cvc ,:token, :post_code ,:prefecture_id ,:city,:house_address,:building ,:tell_number ,:sold_item_id ,:user_id ,:item_id 
   
   with_options presence: true do
-    validates :number,length: { is: 16 } , format:{ with:/\A[0-9]+\z/}
-    validates :exp_month,length: { in: 1..2 } , format:{ with:/\A[0-9]+\z/}
-    validates :exp_year ,length: { is: 2 } 
-    validates :cvc,length: { in: 3..4 } , format:{ with:/\A[0-9]+\z/}
     validates :token
     validates :post_code , format:{ with: /\A\d{3}[-]\d{4}\z/ }
     validates :prefecture_id

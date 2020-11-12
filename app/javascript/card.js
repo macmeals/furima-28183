@@ -11,11 +11,11 @@ const pay = () => {
       exp_year: `20${formData.get("order_sold[exp_year]")}`,
       cvc: formData.get("order_sold[cvc]"),
     };
-    debugger
+    
     Payjp.createToken(card, (status, response) => {
       if (status == 200) {
         const token = response.id;
-        console.log(token)
+    
         const renderDom = document.getElementById("charge-form");
         const tokenObj = `<input value=${token} name='token' type="hidden"> `;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
@@ -24,13 +24,7 @@ const pay = () => {
         document.getElementById("card-exp-month").removeAttribute("name");
         document.getElementById("card-exp-year").removeAttribute("name");
         document.getElementById("card-cvc").removeAttribute("name");
-        document.getElementById("postal-code").removeAttribute("name");
-        document.getElementById("prefecture").removeAttribute("name");
-        document.getElementById("city").removeAttribute("name");
-        document.getElementById("addresses").removeAttribute("name");
-        document.getElementById("building").removeAttribute("name");
-        document.getElementById("phone-number").removeAttribute("name");
-
+        
         document.getElementById("charge-form").submit();
 
       }
