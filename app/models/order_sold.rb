@@ -9,7 +9,7 @@ class OrderSold
     validates :city
     validates :house_address
     validates :tell_number , format:{ with:/\A[0-9]+\z/},length: { maximum: 11 }
-    validates :token
+    # validates :token
   end
 
     def save
