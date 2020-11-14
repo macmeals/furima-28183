@@ -50,7 +50,7 @@
 
 - belongs_to :item
 
-## addressesテーブル
+## ordersテーブル
 
 | Column              | Type        | Options                         |
 | ------------------  | ----------- | ------------------------------- |
