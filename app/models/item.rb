@@ -11,6 +11,7 @@ class Item < ApplicationRecord
 
   with_options presence: true do
     validates :name  
+    validates :image  
     validates :price  , numericality:{ greater_than_or_equal_to: 300 , less_than_or_equal_to: 9999999  } ,format: { with: /\A[0-9]+\z/ }
     validates :explaination  
     with_options numericality: { other_than: 1 } do
@@ -21,8 +22,18 @@ class Item < ApplicationRecord
      validates :ship_day_id 
     end
     validates :user_id
-
   end
+
+  # validate :image_attach
+
+   
+  # def image_attach
+  #   # @item = Item.find(params[:id])
+  #   unless @item.image.attached？
+  #     errors.add(':image', 'is blank')
+  #   end 
+  # end
+
  
   
 end
