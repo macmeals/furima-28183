@@ -22,18 +22,6 @@ class Item < ApplicationRecord
      validates :ship_day_id 
     end
     validates :user_id
-  end
-
-  # validate :image_attach
-
-   
-  # def image_attach
-  #   # @item = Item.find(params[:id])
-  #   unless @item.image.attached？
-  #     errors.add(':image', 'is blank')
-  #   end 
-  # end
-
- 
+  end 
   
 end
