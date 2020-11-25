@@ -78,7 +78,7 @@
   </div>
   <%# /商品の概要 %>
 
-  <div class="comment-box">
+  <%# <div class="comment-box">
     <form>
       <textarea class="comment-text"></textarea>
       <p class="comment-warn">
@@ -86,13 +86,37 @@
         <br>
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
+    
       <button type="submit" class="comment-btn">
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
+         <%# <span>コメントする<span> 
       </button>
-    </form>
+    </form> %>
+
+<div class="comment-box">
+
+<%= form_with model: [@item, @comment], class: '"comment-box"', local: true do |f| %>
+    <%= f.text_area :comment, class: "comment-text", placeholder: 'コメントを入れてください' %>
+  <p class="comment-warn">
+    相手のことを考え丁寧なコメントを心がけましょう。
+    <br>
+    不快な言葉遣いなどは利用制限や退会処分となることがあります。
+  </p>
+  <%= f.submit 'コメントする', class: "comment-btn",width:"20",height:"25" %>
+<% end %>
   </div>
-  <div class="links">
+
+  <h4>＜コメント一覧＞</h4>
+  <% if @comments %>
+        <% @comments.each do |comment| %>
+          <p>
+            <%= comment.user_id %>
+            <%= comment.comment %>
+          </p>
+        <% end %>
+  <% end %>
+
+<div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
     </a>
